@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="highlight()"></body>
+<html>
+  <img rel="preload" src="highlight.png">
+  <span id="verse"><span id="actverse">here is where the verse goes lol</span><span id="ref"><br>this a 1st corinthians banger</span></span>
+</html>
+<style>
+#bg {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: fixed;
+  left: 0;
+  z-index: -2;
+  background-image: url("bg.png");
+  background-size: cover;
+  background-position: 50% 50%;
+}
+img { width: 0; height: 0; opacity: 0; }
+.block {
+  height: 5.5dvh;
+  background-image: url("highlight.png");
+  background-size: cover;
+  background-position: 50% 50%;
+  position: absolute;
+  left: 5dvh;
+  transform: translate(0%, 0%);
+  z-index: -1;
+}
+#verse {
+  width: calc(100% - 10dvh);
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 5dvh;
+  word-wrap: break-word;
+}
+body {
+  background-color: black;
+}
+#ref {
+  font-size: 2dvh;
+}
+</style>
+<script>
+window.addEventListener("resize", highlight);
+function highlight() {
+    for (i = 0; i < document.getElementsByClassName("block").length; i++) {
+      document.getElementsByClassName("block")[0].remove();
+    }
+    for (i = 0; i < Math.round(document.getElementById("actverse").offsetHeight / (window.innerHeight * 0.055)); i++) {
+      newBlock = document.createElement("div");
+      newBlock.classList.add("block");
+      newBlock.style.width = "0dvh";
+      document.body.appendChild(newBlock);
+      newBlock.style.top = document.getElementById("verse").offsetTop - document.getElementById("verse").offsetHeight / 2 + 0.0025 * window.innerHeight + 0.06 * window.innerHeight * i + "px";
+    }
+  for (i = 0; i < document.getElementsByClassName("block").length; i++) {
+    setTimeout(width, i*(Math.random() * 200 + 600), i);
+  }
+}
+function width(index) {
+  document.getElementsByClassName("block")[index].style.transition = Math.random() * 0.4 + 0.8 + "s";
+  document.getElementsByClassName("block")[index].style.width = "calc(100% - 10dvh)";
+}
+</script>
